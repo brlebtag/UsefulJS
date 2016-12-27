@@ -5,29 +5,27 @@
  * minutes can be positive or negative.
  * time goes 00:00 through 23:59
  */
-function add_minute(time, minute)
-{
-    let [h, m] = time.split(':');
+function addMinute(time, minute) {
+  let [h, m] = time.split(':');
 
-    h = parseInt(h);
+  h = parseInt(h);
 
-    m = parseInt(m);
+  m = parseInt(m);
 
-    let val = m + minute;
+  let val = m + minute;
 
-    m = mod(val, 60);
+  m = mod(val, 60);
 
-    h = mod(h + quotient(val, 60, m), 24);
+  h = mod(h + quotient(val, 60, m), 24);
 
-    return `${two_places(h)}:${two_places(m)}`;
+  return `${twoPlaces(h)}:${twoPlaces(m)}`;
 }
 
 /**
  * Print time with leading 0
  */
-function two_places(n)
-{
-    return n > 9 ? n.toString() : "0" + n 
+function twoPlaces(n) {
+  return n > 9 ? n.toString() : "0" + n 
 }
 
 /**
@@ -40,16 +38,14 @@ function two_places(n)
  *   divisor = dividend * quotient + remainder =>
  *   quotient = (divisor - remainder) / dividend 
  */
-function quotient(divisor, dividend, remainder)
-{
-    return (divisor - remainder) / dividend;
+function quotient(divisor, dividend, remainder) {
+  return (divisor - remainder) / dividend;
 }
 
 /**
  * Mathematical accurate mod.
  * JS's mod is buggy.
  */
-function mod(n, m)
-{
-    return ((n%m)+m)%m;
+function mod(n, m) {
+  return ((n%m)+m)%m;
 }
